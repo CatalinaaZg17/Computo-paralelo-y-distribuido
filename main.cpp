@@ -4,7 +4,8 @@
 #include <random>
 #include <mutex>
 
-
+// 10 threads,  cada uno sumará 100 números aleatorios entre 1 y 1000.
+//  Mostrar el resultado de cada thread. Enunciar el thread con puntuación más alta
 class RandomSumThread {
 private:
     int id;
@@ -51,9 +52,11 @@ int main() {
         t.join();
     }
 
-    // Mostrar resultados y determinar el thread con mayor puntuación
+    // Mostrar resultados y el thread con mayor puntuación
     int maxSum = 0;
     int maxId = 0;
+
+    std::cout << "\n\033[1;34m=== Resultados  ===\033[0m\n";
 
     for (auto& w : workers) {
         std::cout << "Thread " << w.getId() << " sum: " << w.getSum() << std::endl;
@@ -63,8 +66,8 @@ int main() {
         }
     }
 
-    std::cout << "Thread con puntuación más alta: Thread " << maxId
-              << " con suma " << maxSum << std::endl;
+    std::cout << "\n\033[1;32m Thread con puntuación más alta: Thread "
+              << maxId << " con suma " << maxSum << " \033[0m\n";
 
     return 0;
 }
